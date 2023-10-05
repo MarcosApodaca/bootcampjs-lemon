@@ -58,10 +58,11 @@ const grupoMusicalF: GrupoMusical = {
 // console.log(grupoMusicalA, grupoMusicalB, grupoMusicalC, grupoMusicalD, grupoMusicalF);
 
 console.log(`%c${grupoMusicalA.nombre}`,style, `/ ${grupoMusicalA.añoDeFundacion} / activo: ${grupoMusicalA.activo} / ${grupoMusicalA.generoMusical}`);
-console.log("%cQueen", style, grupoMusicalB);
-console.log ("%cAC DC", style, grupoMusicalC);
-console.log("%cLudwig van Beethoven", style, grupoMusicalD);
-console.log("%cThe Rolling Stones", style, grupoMusicalF);
+console.log(`%c${grupoMusicalB.nombre}`,style, `/ ${grupoMusicalB.añoDeFundacion} / activo: ${grupoMusicalB.activo} / ${grupoMusicalB.generoMusical}`);
+console.log(`%c${grupoMusicalC.nombre}`,style, `/ ${grupoMusicalC.añoDeFundacion} / activo: ${grupoMusicalC.activo} / ${grupoMusicalC.generoMusical}`);
+console.log(`%c${grupoMusicalD.nombre}`,style, `/ ${grupoMusicalD.añoDeFundacion} / activo: ${grupoMusicalD.activo} / ${grupoMusicalD.generoMusical}`);
+console.log(`%c${grupoMusicalF.nombre}`,style, `/ ${grupoMusicalF.añoDeFundacion} / activo: ${grupoMusicalF.activo} / ${grupoMusicalF.generoMusical}`);
+
 
 
 
