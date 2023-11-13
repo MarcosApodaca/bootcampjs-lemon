@@ -11,11 +11,11 @@
 <li>Módulo 3 - Variables</li>
 <img width="50" src="https://cdn-icons-png.flaticon.com/512/9757/9757573.png" >
 <li>Módulo 4 - Funciones</li>
-<img width="50" src="" >
+<img width="50" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRNdcxcKLE2s2aciBo72ED9-Og1X5A-biXNSyCwD-Sy9ZOF12QM" >
 <li>Módulo 5 - Condicionales</li>
-<img width="50" src="" >
+<img width="50" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQdfLgQ7Ar0-OU_caSJLrCJh5TBHeIErHy01WzVYpRTgOnFuNK3" >
 <li>Módulo 6 - Imports</li>
-<img width="50" src="" >
+<img width="50" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRSanQ9XC1vIFYBn2_kzayFJYQm7U9QJivLrrBqNrKBVlFY4KJl" >
 <li>Módulo 7 - Testing</li>
 <img width="50" src="" >
 <li>Módulo 8 - Arrays y Bucles</li>
