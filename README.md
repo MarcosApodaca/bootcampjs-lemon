@@ -3,7 +3,7 @@
 
 <ul>
 <li>Módulo 0 - Setup y Git</li>
-<img src="https://cdn-icons-png.flaticon.com/512/174/174854.png">
+<img width="100" src="https://cdn-icons-png.flaticon.com/512/174/174854.png">
 <li>Módulo 1 - HTML</li>
 <li>Módulo 2 - Tipos de datos y Operadores</li>
 <li>Módulo 3 - Variables</li>
