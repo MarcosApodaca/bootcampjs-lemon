@@ -3,6 +3,7 @@
 
 <ul>
 <li>Módulo 0 - Setup y Git</li>
+<img src="https://campus.lemoncode.net/api/student/assets/51af041910b482701c8a8b75c34f2853:8db83d037a67870a7e2ab0e9807da553:4696fad122eb4be89981f07fb0518573b8723369456378a99b182304bfdf88079227f07d821c04c7ea83389f5ea62305efc1223f3246e291b56a611f31bf7f0e25634f2cc3c828bcd5fc95e3a6d11be4595743bb2f61aef2418c32dd00e3555175ae960dda832574c4">
 <li>Módulo 1 - HTML</li>
 <li>Módulo 2 - Tipos de datos y Operadores</li>
 <li>Módulo 3 - Variables</li>
