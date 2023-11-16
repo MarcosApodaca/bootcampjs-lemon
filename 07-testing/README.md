@@ -1,11 +1,4 @@
-# typescript-sandbox
+# Laboratorio Módulo 7 
 
-Para la parte de cada módulo en la que te planteamos ejercicios con JavaScript puedes usar este sandbox.
-
-Pasos:
-
-- Clonate el proyecto.
-- Instala las dependencias con `npm install`.
-- Ejecuta el sandbox con `npm run dev`.
-- Abre el navegador en `http://localhost:5173/` (si ese puerto no te funciona, mira en la consola donde has hecho el build, puede que este ocupado y se haya abierto en otro puerto).
-- Puedes empezar a meter tu código en el fichero:
+Tuve problema al realizar los test, creo que no he modulado bien la funcion del juego, a la interaccion del usuario.
+Porque tenia dependecia del DOM y creo que es el problema que tuve, he modularizado la funcion gameOver() "al archivo logicaDelJuego.ts" para poder realizar el test, sin tener este incoveniente.
