@@ -1,10 +1,7 @@
-
- interface Enumeracion {
+export interface Enumeracion {
     puntuacion:number;
 }
 
-export const enumeracion: Enumeracion = {
-    puntuacion:0,
-}
-
-
+export const createDefaultEnumeracion = (): Enumeracion => ({
+    puntuacion: 0,
+});

@@ -1,31 +1,37 @@
-import { enumeracion } from "./model";
-import { nuevoJuego } from "./ui"
+import { Enumeracion } from "./model";
 
-export const puntos = (document.getElementById("puntos") as HTMLInputElement)
-export function muestraPuntuacion():void {
-   
-    puntos.textContent = `Puntuación: ${enumeracion.puntuacion}`
+export const enumeracion: Enumeracion = {
+  puntuacion:0,
 }
 
+export const getPuntuacionLabel = (puntuacion: number): string => {
+  return `Puntuación: ${puntuacion}`
+}
 
-export function dameCarta():void {
+export function muestraPuntuacion():void { 
+  const puntos = (document.getElementById("puntos") as HTMLInputElement);
+  puntos.textContent = getPuntuacionLabel(enumeracion.puntuacion);
+}
+
+export const addTwoIfRandomBiggerThanSeven = (randomNumber: number): number => {
+  return randomNumber > 7 ? randomNumber + 2 : randomNumber;
+}
+
+export function dameCarta(): void {
      
-   let numeroAleatorio:number = Math.floor(Math.random() * 10) +1
-    
-    if ( numeroAleatorio > 7 ) {
-         numeroAleatorio += 2;
-    } 
+  let numeroAleatorio:number = Math.floor(Math.random() * 10) +1
   
-   
-    mostrarCarta(numeroAleatorio);
-    enumeracion.puntuacion += numeroAleatorio;
-    muestraPuntuacion()
-    
-  }
+  numeroAleatorio = addTwoIfRandomBiggerThanSeven(numeroAleatorio);
+
+  const cartaImg = (document.getElementById("cartaImg") as HTMLImageElement);
+  cartaImg.src = getCartaUrl(numeroAleatorio);
+  enumeracion.puntuacion += numeroAleatorio;
+  muestraPuntuacion()
   
- function mostrarCarta (carta: number):void{
-    const cartaImg = (document.getElementById("cartaImg") as HTMLImageElement )
-    let urlCarta;
+}
+  
+function getCartaUrl (carta: number): string {
+  let urlCarta;
   
   switch (carta) {
     case 1:
@@ -67,26 +73,22 @@ export function dameCarta():void {
     default:
       urlCarta = 'https://github.com/Lemoncode/fotos-ejemplos/blob/main/cartas/back.jpg';
   }
-  cartaImg.src = urlCarta;
 
-
+  return urlCarta;
 }
 
-export const btnCarta = (document.getElementById("btn-carta") as HTMLInputElement)
-export const planto = (document.getElementById("planto") as HTMLButtonElement )
-
-export function gameOver(){
-  if (enumeracion.puntuacion > 7.5){
-      (document.getElementById("txt") as HTMLInputElement ).innerHTML = "Game Over"
-      
-      
-      btnCarta.disabled = true
-      planto.disabled = true
+export const getGameOverLabel = (puntuacion: number): string => {
+  if ( puntuacion < 4)
+    return "Has sido muy conservador";
+  else if (puntuacion >= 4 && puntuacion < 6) {
+    return "Te ha entrado el canguelo eh?";
   }
-  else if ( enumeracion.puntuacion === 7.5){
-      (document.getElementById("txt") as HTMLInputElement ).innerHTML = "¡ Lo has clavado! ¡Enhorabuena!"
-      planto.disabled = true
+  else if (puntuacion >= 6 && puntuacion < 7.5){
+    return "Casi casi...";
   }
-  nuevoJuego()
-  
+  else if(puntuacion ===  7.5) {
+    return  "¡ Lo has clavado! ¡Enhorabuena!";
+  } else {
+    return "Game Over";
+  }
 }

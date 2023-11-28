@@ -1,34 +1,95 @@
-import { gameOver } from "./motor";
-import { enumeracion } from "./model";
 import { expect, it } from "vitest";
 
+import { addTwoIfRandomBiggerThanSeven, getPuntuacionLabel, getGameOverLabel } from "./motor";
 
-describe("Comprobar numero aleatorio", () =>{
+describe("motor specs", () =>{
+    it("should get puntuacion label", () => {
+        // Arrange
+        const puntuacion = 8;
+        const expectedResult = `Puntuación: ${puntuacion}`;
+        
+        // Act
+        const result = getPuntuacionLabel(puntuacion);
 
-    it("Debe devolver si el jugador ha perdido la partida", () => {
-        //Arrange   
-        enumeracion.puntuacion = 10
-       const perdiste = "Game Over"
-        //Act
-        const resultado = gameOver()
-
-        //Assert
-         expect(resultado).toBe(perdiste)
+        // Assert
+        expect(result).toEqual(expectedResult);
     });
 
-    it("Debe devolver si el jugador ha ganado la partida", () => {
+    it("should return 'Has sido muy conservador' if puntuacion below 4", () => {
+        // Arrange
+        const puntuacion = 3;
+        const expectResult = "Has sido muy conservador";
 
-        //Arrange
-        enumeracion.puntuacion = 7.5
-        const ganaste = "¡ Lo has clavado! ¡Enhorabuena!"
+        // Act
+        const result = getGameOverLabel(puntuacion);
 
-        //Act
-        const resultado = gameOver()
+        // Assert
+        expect(result).toEqual(expectResult);
+    });
 
-        //Assert
-        expect(resultado).toBe(ganaste)
+     // Cover other 4 cases
 
-    })
+    it("should return 'Te ha entrado el canguelo eh?' if puntuacion is more 4 or less 6  ", () => {
+        // Arrange
+        const puntuacion = 5;
+        const expectResult = "Te ha entrado el canguelo eh?";
 
+        // Act
+        const result = getGameOverLabel(puntuacion);
+
+        // Assert
+        expect(result).toEqual(expectResult);
+
+    }) 
+
+    it("should return 'Te ha entrado el canguelo eh?' if puntuacion is more 6 or less 7.5  ", () => {
+        // Arrange
+        const puntuacion = 7;
+        const expectResult = "Casi casi...";
+
+        // Act
+        const result = getGameOverLabel(puntuacion);
+
+        // Assert
+        expect(result).toEqual(expectResult);
+
+    }) 
+
+    it("should return 'Te ha entrado el canguelo eh?' if puntuacion are same 7.5  ", () => {
+        // Arrange
+        const puntuacion = 7.5;
+        const expectResult = "¡ Lo has clavado! ¡Enhorabuena!";
+
+        // Act
+        const result = getGameOverLabel(puntuacion);
+
+        // Assert
+        expect(result).toEqual(expectResult);
+
+    }) 
+   
+
+    it('should add 2 if random number bigger than 7', () => {
+        // Arrange
+        const puntuacion = 8;
+        const expectedResult = 10;
+
+        // Act
+        const result = addTwoIfRandomBiggerThanSeven(puntuacion);
+
+        // Assert
+        expect(result).toEqual(expectedResult);
+    });
+
+    it('should not modify random number if equal or less than 7', () => {
+        // Arrange
+        const puntuacion = 6;
+
+        // Act
+        const result = addTwoIfRandomBiggerThanSeven(puntuacion);
+
+        // Assert
+        expect(result).toEqual(puntuacion);
+    });
 
 })
