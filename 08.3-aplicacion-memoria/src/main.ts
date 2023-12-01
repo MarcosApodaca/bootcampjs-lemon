@@ -43,26 +43,26 @@ function girarCarta(carta:number):void {
     cartaImg1.src = urlCarta
   }
 
-  // const animalesCartas = ['🐝', '🦁','🐶','🦉','🐔','🐷','🐝', '🦁','🐶','🦉','🐔','🐷',]
-  // const contenedorCartas: HTMLElement = (document.getElementById("contenedorCartas") as HTMLDivElement)
+  const animalesCartas = ['🐝', '🦁','🐶','🦉','🐔','🐷','🐝', '🦁','🐶','🦉','🐔','🐷',]
+  const contenedorCartas: HTMLElement = (document.getElementById("contenedorCartas") as HTMLDivElement)
 
-  // animalesCartas.forEach((carta:string, indice) => {
+  animalesCartas.forEach((carta:string, indice) => {
 
-  //   const nuevoDiv = document.createElement("div");
+    const nuevoDiv = document.createElement("div");
 
-  //   nuevoDiv.className = "carta";
-  //   nuevoDiv.textContent = carta;
-  //   nuevoDiv.setAttribute("data-indice", indice);
-  //   nuevoDiv.addEventListener('click', function() {
-  //     const indiceCarta = this.getAttribute('data-indice');
-  //     alert(`Hiciste clic en la carta ${indiceCarta}`);
-  //   });
-  //   contenedorCartas.appendChild(nuevoDiv);
-  // });
+    nuevoDiv.className = "carta";
+    nuevoDiv.textContent = carta;
+    nuevoDiv.setAttribute("data-indice", indice);
+    nuevoDiv.addEventListener('click', function() {
+      const indiceCarta = this.getAttribute('data-indice');
+      alert(`Hiciste clic en la carta ${indiceCarta}`);
+    });
+    contenedorCartas.appendChild(nuevoDiv);
+  });
 
-  // interface InfoCarta {
-  //   idFoto: number;
-  //   imagen: string;
-  // }
+  interface InfoCarta {
+    idFoto: number;
+    imagen: string;
+  }
   
   
