@@ -77,7 +77,7 @@ div11.addEventListener('click', function () {
   girarCarta(2, cartaImg11)
 })
 div12.addEventListener('click', function () {
-  girarCarta(2, cartaImg12)
+  girarCarta(1, cartaImg12)
 })
 
 let urlCarta = "";
@@ -102,35 +102,4 @@ function girarCarta(carta:number, imagen: HTMLImageElement):void {
   // const contenedorCartas: HTMLElement = (document.getElementById("contenedorCartas") as HTMLDivElement)
 
 
-  // interface InfoCarta {
-  //   idFoto: number;
-  //   imagen: string;
-  // }
-  
-  // const informacionCartas: InfoCarta[] =  [
-  // {
-  //   idFoto: 1,
-  //   imagen:"https://github.com/Lemoncode/fotos-ejemplos/blob/main/memo/1.png?raw=true",
-  // },
-  // {
-  //   idFoto: 2,
-  //   imagen: "https://github.com/Lemoncode/fotos-ejemplos/blob/main/memo/2.png?raw=true",
-  // },
-  // {
-  //   idFoto: 3,
-  //   imagen:"https://github.com/Lemoncode/fotos-ejemplos/blob/main/memo/3.png?raw=true",
-  // },
-  // {
-  //   idFoto: 4,
-  //   imagen: "https://github.com/Lemoncode/fotos-ejemplos/blob/main/memo/4.png?raw=true", 
-  // },
-  // {
-  //   idFoto:5,
-  //   imagen: "https://github.com/Lemoncode/fotos-ejemplos/blob/main/memo/5.png?raw=true",
-  // },
-  // {
-  //   idFoto:6,
-  //   imagen: "https://github.com/Lemoncode/fotos-ejemplos/blob/main/memo/6.png?raw=true",
-  // }
-  // ]
-  
+ 
