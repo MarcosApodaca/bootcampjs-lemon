@@ -30,6 +30,7 @@ const div9 = (document.getElementById("div9") as HTMLDivElement)
 const div10 = (document.getElementById("div10") as HTMLDivElement)
 const div11 = (document.getElementById("div11") as HTMLDivElement)
 const div12 = (document.getElementById("div12") as HTMLDivElement)
+
 const cartaImg1 = (document.getElementById("cartaImg1") as HTMLImageElement)
 const cartaImg2 = (document.getElementById("cartaImg2") as HTMLImageElement)
 const cartaImg3 = (document.getElementById("cartaImg3") as HTMLImageElement)
