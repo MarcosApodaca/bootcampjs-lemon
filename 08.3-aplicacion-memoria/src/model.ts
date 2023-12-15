@@ -147,4 +147,4 @@ const crearTableroInicial = (): Tablero => ({
   estadoPartida: "PartidaNoIniciada",
 });
 
-export let tablero: Tablero = crearTableroInicial();
+export let tablero: Tablero = crearTableroInicial() ;
