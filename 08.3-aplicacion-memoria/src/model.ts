@@ -12,7 +12,7 @@ interface InfoCarta {
     imagen: string;
   }
 
-  const infoCartas: InfoCarta[] = [
+ export const infoCartas: InfoCarta[] = [
     {
         idFoto: 1,
         imagen:"https://github.com/Lemoncode/fotos-ejemplos/blob/main/memo/1.png?raw=true",
@@ -48,81 +48,10 @@ interface InfoCarta {
   });
   
   const crearColeccionDeCartasInicial = (infoCartas: InfoCarta[]): Carta[] => {
-    [ 
-    {
-        idFoto: 1,
-        imagen:"https://github.com/Lemoncode/fotos-ejemplos/blob/main/memo/1.png?raw=true",
-        estaVuelta: false,
-        encontrada: false,
-      },
-      {
-        idFoto: 2,
-        imagen: "https://github.com/Lemoncode/fotos-ejemplos/blob/main/memo/2.png?raw=true",
-        estaVuelta: false,
-        encontrada: false,
-      },
-      {
-        idFoto: 3,
-        imagen:"https://github.com/Lemoncode/fotos-ejemplos/blob/main/memo/3.png?raw=true",
-        estaVuelta: false,
-        encontrada: false,
-      },
-      {
-        idFoto: 4,
-        imagen: "https://github.com/Lemoncode/fotos-ejemplos/blob/main/memo/4.png?raw=true", 
-        estaVuelta: false,
-        encontrada: false,
-      },
-      {
-        idFoto:5,
-        imagen: "https://github.com/Lemoncode/fotos-ejemplos/blob/main/memo/5.png?raw=true",
-        estaVuelta: false,
-        encontrada: false,
-      },
-      {
-        idFoto:6,
-        imagen: "https://github.com/Lemoncode/fotos-ejemplos/blob/main/memo/6.png?raw=true",
-        estaVuelta: false,
-        encontrada: false,
-      },
-    {
-        idFoto: 1,
-        imagen:"https://github.com/Lemoncode/fotos-ejemplos/blob/main/memo/1.png?raw=true",
-        estaVuelta: false,
-        encontrada: false,
-      },
-      {
-        idFoto: 2,
-        imagen: "https://github.com/Lemoncode/fotos-ejemplos/blob/main/memo/2.png?raw=true",
-        estaVuelta: false,
-        encontrada: false,
-      },
-      {
-        idFoto: 3,
-        imagen:"https://github.com/Lemoncode/fotos-ejemplos/blob/main/memo/3.png?raw=true",
-        estaVuelta: false,
-        encontrada: false,
-      },
-      {
-        idFoto: 4,
-        imagen: "https://github.com/Lemoncode/fotos-ejemplos/blob/main/memo/4.png?raw=true", 
-        estaVuelta: false,
-        encontrada: false,
-      },
-      {
-        idFoto:5,
-        imagen: "https://github.com/Lemoncode/fotos-ejemplos/blob/main/memo/5.png?raw=true",
-        estaVuelta: false,
-        encontrada: false,
-      },
-      {
-        idFoto:6,
-        imagen: "https://github.com/Lemoncode/fotos-ejemplos/blob/main/memo/6.png?raw=true",
-        estaVuelta: false,
-        encontrada: false,
-      }
-      ]
-
+    return infoCartas.flatMap((infoCarta) => [
+      crearCartaInicial(infoCarta.idFoto, infoCarta.imagen),
+      crearCartaInicial(infoCarta.idFoto, infoCarta.imagen),
+    ]);
   };  
 
   

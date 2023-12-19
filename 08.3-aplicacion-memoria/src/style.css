@@ -40,6 +40,29 @@ body {
   animation: flip-horizontal-bottom 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
 
 }
+
+.btn-flex{
+  display: flex;
+  justify-content: center;
+}
+
+.btn{
+  margin-top: 3rem;
+  border-color: transparent;
+  border-radius: 5px;
+  padding: 6px;
+  background-color: #fff;
+  width: 15rem;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: background-color .2s ease-in-out;
+}
+
+.btn:hover{
+  cursor: pointer;
+  background-color: #cae9e9;
+}
 /* 
 @keyframes flip-horizontal-bottom {
   0% {
