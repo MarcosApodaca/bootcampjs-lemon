@@ -33,12 +33,12 @@ export const barajarCartas = (cartas : Carta[]): Carta[] => {
     return cartaA.idFoto === cartaB.idFoto && indiceA !== indiceB;
   }
 
-  const parejaEncontrada = (tablero: Tablero, indiceA: number, indiceB: number) : void => {
+export  const parejaEncontrada = (tablero: Tablero, indiceA: number, indiceB: number) : void => {
     tablero.cartas[indiceA].encontrada = true;
     tablero.cartas[indiceB].encontrada = true;
   }
   
-  const parejaNoEncontrada = (tablero: Tablero, indiceA :number, indiceB : number) : void => {
+export  const parejaNoEncontrada = (tablero: Tablero, indiceA :number, indiceB : number) : void => {
     tablero.cartas[indiceA].estaVuelta = false;
     tablero.cartas[indiceB].estaVuelta = false;
   }

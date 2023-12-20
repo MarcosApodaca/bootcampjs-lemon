@@ -1,5 +1,5 @@
-import { cartas, infoCartas, tablero } from "./model"
-import { barajarCartas, sePuedeVoltearLaCarta, voltearLaCarta } from "./motor"
+import { Tablero, cartas, tablero } from "./model"
+import { barajarCartas, parejaEncontrada, parejaNoEncontrada, sePuedeVoltearLaCarta, sonPareja, } from "./motor"
 
 const iniciaPartida = document.getElementById("iniciaPartida") as HTMLButtonElement
 
@@ -14,56 +14,73 @@ const iniciarPartida = () => {
 
   };
 
+  
+
 const divCarta = document.querySelectorAll('.contenido');  
 
+
 divCarta.forEach(carta => {
-    carta.addEventListener('click', () => {
-   
+  carta.addEventListener('click', () => {
+    const indiceArray = (carta as HTMLElement).dataset.indiceId || '0';
+    const indiceImagen: any = (carta.querySelector('img') as HTMLElement).dataset.indiceImagen;
+    const indice = parseInt(indiceArray, 10);
+    
+    if (sePuedeVoltearLaCarta(tablero, indice)) {
 
-    const indiceArray = (carta as HTMLElement).dataset.indiceArray || '0';
-    const indiceImagen:number = parseInt((carta as HTMLElement).dataset.indiceImagen || '0');
+      voltearCarta(tablero,indice)
 
+      const imagenCarta = carta.querySelector('img');
+      const nuevaUrl = cartas[indiceImagen].imagen;
 
-      const indice = parseInt(indiceArray, 10);
-        // Tu lógica aquí
-        if (sePuedeVoltearLaCarta(tablero, indice)) {
+      if (imagenCarta) {
+        imagenCarta.src = nuevaUrl;
+      }   
            
-            voltearLaCarta(tablero, indice);
-        }
-  
-        const nuevaUrl = infoCartas[indiceImagen].imagen;
-          const imagenCarta = carta.querySelector('img');
-  
-          if (imagenCarta) {
-              imagenCarta.src = nuevaUrl;
-          } else {
-              console.error('No se encontró la etiqueta img dentro del elemento de carta.');
-          }
       
-
-    });
-
+    }
+     console.log(sePuedeVoltearLaCarta(tablero, indice));
+      
   });
 
+ });
 
 
-//   const cambiarCarta = (indice: number) => {
-      
-//       let urlCarta = "";
-//     function girarCarta(carta:number, imagen: HTMLImageElement):void {
-       
-//       switch(carta){
-//         case 1:
-//           urlCarta = "https://github.com/Lemoncode/fotos-ejemplos/blob/main/memo/1.png?raw=true";
-//           break;
-//         case 2:
-//           urlCarta = "https://github.com/Lemoncode/fotos-ejemplos/blob/main/memo/2.png?raw=true";
-//           break;
-//         }
-        
-//         imagen.src = urlCarta;
-      
-//       }
+ const voltearCarta = (tablero:Tablero, indice: number): void => {
+ switch (tablero.estadoPartida) {
 
-//   };
+   case "PartidaNoIniciada":
+   case "CeroCartasLevantadas":
+    
+     tablero.estadoPartida = "UnaCartaLevantada";
+     tablero.indiceCartaVolteadaA = indice;
+     break;
+
+   case "UnaCartaLevantada":
+     // Voltear la segunda carta
+     tablero.estadoPartida = "DosCartasLevantadas";
+     tablero.indiceCartaVolteadaB = indice;
+     break;
+
+   case "DosCartasLevantadas":
+
+     if (sonPareja(tablero.indiceCartaVolteadaA!, tablero.indiceCartaVolteadaB!, tablero)) {
+       // Son pareja, marcarlas como encontradas
+       parejaEncontrada(tablero, tablero.indiceCartaVolteadaA!, tablero.indiceCartaVolteadaB!);
+     } else {
+       // No son pareja, volver a voltearlas después de un tiempo
+       setTimeout(() => {
+         parejaNoEncontrada(tablero, tablero.indiceCartaVolteadaA!, tablero.indiceCartaVolteadaB!);
+       }, 1000);
+     }
+
+     // Reiniciar el estado
+     tablero.estadoPartida = "CeroCartasLevantadas";
+     tablero.indiceCartaVolteadaA = undefined;
+     tablero.indiceCartaVolteadaB = undefined;
+     break;
+
+   case "PartidaCompleta":
+     break;
+  }
+}  
 

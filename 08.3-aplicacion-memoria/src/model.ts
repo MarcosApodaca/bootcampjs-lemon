@@ -54,6 +54,8 @@ interface InfoCarta {
     ]);
   };  
 
+  console.log(crearColeccionDeCartasInicial(infoCartas));
+  
   
 export let cartas: Carta[] = crearColeccionDeCartasInicial(infoCartas);
 
