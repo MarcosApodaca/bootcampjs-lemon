@@ -33,13 +33,25 @@ body {
   height: 15rem;
   width: 15rem;
   position: relative;
-  animation: flip-horizontal-bottom 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+  
+}
+.carta-girada {
+  transform: rotateY(180deg); 
+  transition: transform 0.5s ease;
+  background-color: orangered;
 }
 
-.carta{
-  animation: flip-horizontal-bottom 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
-
+.carta-volver{
+  transform: rotateY(0deg); 
+  transition: transform 0.5s ease;
+  background-color: #fff;
 }
+.contenido:hover{
+  cursor: pointer;
+}
+
+
+
 
 .btn-flex{
   display: flex;
@@ -61,16 +73,9 @@ body {
 
 .btn:hover{
   cursor: pointer;
-  background-color: #cae9e9;
+  color: #fff;
+  background-color: orangered;
 }
-/* 
-@keyframes flip-horizontal-bottom {
-  0% {
-            transform: rotateX(0);
-  }
-  100% {
-            transform: rotateX(-180deg);
-  }
-} */
+
 
 

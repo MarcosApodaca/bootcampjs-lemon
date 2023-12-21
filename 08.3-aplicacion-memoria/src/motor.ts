@@ -23,14 +23,15 @@ export const barajarCartas = (cartas : Carta[]): Carta[] => {
 
     }
   }  
-  
+
 
   export const sonPareja = (indiceA: number, indiceB: number, tablero: Tablero): boolean => {
     const cartaA = tablero.cartas[indiceA];
     const cartaB = tablero.cartas[indiceB];
-  
-    // Verificar si las cartas tienen el mismo ID y no son la misma carta
-    return cartaA.idFoto === cartaB.idFoto && indiceA !== indiceB;
+    cartaA.estaVuelta = true
+    cartaB.estaVuelta = true
+    return cartaA && cartaB && cartaA.idFoto === cartaB.idFoto && indiceA !== indiceB;
+
   }
 
 export  const parejaEncontrada = (tablero: Tablero, indiceA: number, indiceB: number) : void => {
@@ -38,10 +39,25 @@ export  const parejaEncontrada = (tablero: Tablero, indiceA: number, indiceB: nu
     tablero.cartas[indiceB].encontrada = true;
   }
   
-export  const parejaNoEncontrada = (tablero: Tablero, indiceA :number, indiceB : number) : void => {
-    tablero.cartas[indiceA].estaVuelta = false;
-    tablero.cartas[indiceB].estaVuelta = false;
-  }
+  export const parejaNoEncontrada = (tablero: Tablero, indiceA: number, indiceB: number): void => {
+    const cartaA = tablero.cartas[indiceA];
+    const cartaB = tablero.cartas[indiceB];
+    
+    if (cartaA.idFoto !== cartaB.idFoto) {
+      const imagenCartaA = document.querySelector(`[data-indice-imagen="${indiceA}"]`) as HTMLImageElement;
+      const imagenCartaB = document.querySelector(`[data-indice-imagen="${indiceB}"]`) as HTMLImageElement;
+      cartaA.estaVuelta = false
+      cartaB.estaVuelta = false
+       setTimeout(() => {
+         imagenCartaB.src = "";
+          imagenCartaA.src = "";
+        }, 1000); 
+      
+    }
+    
+  };
+  
+  
 
   export const esPartidaCompleta = (tablero: Tablero) : boolean => {
     return tablero.cartas.every((carta) => carta.encontrada);
