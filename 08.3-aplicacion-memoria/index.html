@@ -8,7 +8,11 @@
     <link rel="stylesheet" href="./src/style.css">
   </head>
   <body>
+    <div id="contenedor" class="none"><h1>FELICIDADES, LO HAS COMPLETADO!!! 😄</h1></div>
     <section class="contenedor">
+      <div  class="contador-flex">
+      <div class="intentos" > Numero de intentos <span id="contador">0</span></div>
+      </div>
       <div class="contenedor_cartas">
         <div class="contenido" id="div1" data-indice-id="0" > 
           <img class="carta" data-indice-imagen="0" src="">
@@ -61,8 +65,8 @@
     </div>
     <div class="btn-flex">
     <button id="iniciaPartida" class="btn">Iniciar Partida</button>
-    </div>
+    <button id="reiniciar" class="btn reset">volver a Jugar</button>
   </section>
-    <script type="module" src="/src/ui.ts"></script>
+    <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

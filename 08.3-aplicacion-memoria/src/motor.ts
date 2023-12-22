@@ -61,6 +61,7 @@ export  const parejaEncontrada = (tablero: Tablero, indiceA: number, indiceB: nu
 
   export const esPartidaCompleta = (tablero: Tablero) : boolean => {
     return tablero.cartas.every((carta) => carta.encontrada);
+    
   }
 
   export const iniciaPartida = (tablero: Tablero): void => {

@@ -1,3 +1,3 @@
-import { iniciaPartida } from "./motor";
+import {seleccionaCarta } from "./ui";
 
-iniciaPartida
+seleccionaCarta()
