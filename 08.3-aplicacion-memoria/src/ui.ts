@@ -36,6 +36,7 @@ divCarta.forEach(carta => {
     const indice = parseInt(indiceArray, 10);
     if(tablero.cartas[indice].estaVuelta === true) {
       alert("Selecciona otra carta");
+      
     }
 
     if (sePuedeVoltearLaCarta(tablero, indice)) {
