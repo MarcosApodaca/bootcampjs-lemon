@@ -1,11 +1,6 @@
-# typescript-sandbox
+# Modulo 08.3
 
-Para la parte de cada módulo en la que te planteamos ejercicios con JavaScript puedes usar este sandbox.
+Al comienzo tuve algunos inconvenientes, considero que algunas partes podria reutilizar mejor el codigo.
+A parte de ello, no estaba mencionado en el enunciado, pero añadi un boton para Reiniciar la partida, y añadi algunos estilos mas en el CSS 
 
-Pasos:
 
-- Clonate el proyecto.
-- Instala las dependencias con `npm install`.
-- Ejecuta el sandbox con `npm run dev`.
-- Abre el navegador en `http://localhost:5173/` (si ese puerto no te funciona, mira en la consola donde has hecho el build, puede que este ocupado y se haya abierto en otro puerto).
-- Puedes empezar a meter tu código en el fichero:
