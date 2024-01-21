@@ -1,45 +1,10 @@
-import { LineaTicket, ResultadoLineaTicket, TipoIva } from "./model";
+import { LineaTicket, ResultadoLineaTicket, ResultadoTotalTicket, TipoIva, TotalPorTipoIva } from "./model";
 import "./style.css";
-
-export const productos: LineaTicket[] = [
-    {
-      producto: {
-        nombre: "Legumbres",
-        precio: 2,
-        tipoIva: "general",
-      },
-      cantidad: 2,
-    },
-    {
-      producto: {
-        nombre: "Perfume",
-        precio: 20,
-        tipoIva: "general",
-      },
-      cantidad: 3,
-    },
-    {
-      producto: {
-        nombre: "Leche",
-        precio: 1,
-        tipoIva: "superreducidoC",
-      },
-      cantidad: 6,
-    },
-    {
-      producto: {
-        nombre: "Lasaña",
-        precio: 5,
-        tipoIva: "superreducidoA",
-      },
-      cantidad: 1,
-    },
-  ]; 
 
 
   const tipoDeIva = (tipoIva:TipoIva,precio:number):number => {
       
-    let tasaIva: number
+    let tasaIva: number;
 
     switch (tipoIva) {
         case "general":
@@ -64,21 +29,22 @@ export const productos: LineaTicket[] = [
             tasaIva = 0;
             break;
 
-        }
+        };
        
-    return precio * tasaIva/100
+    return precio * tasaIva/100;
 }
 
   
 export  const calculaTicket = (lineasTicket: LineaTicket[]) => {
-    let resultado:ResultadoLineaTicket[] = []
+  let resultado:ResultadoLineaTicket[] = [];
 
     for (let i = 0; i < lineasTicket.length; i++) {
-        let precioConIva = resultado[i].precioConIva
-        const tipoIva = lineasTicket[i].producto.tipoIva
-        const precio = lineasTicket[i].producto.precio
         
-        precioConIva = tipoDeIva(tipoIva , precio)
+        const tipoIva = lineasTicket[i].producto.tipoIva;
+        const precio = lineasTicket[i].producto.precio;
+        const precioIva = tipoDeIva(tipoIva,precio);
+        let precioConIva = precioIva + precio
+       
 
         return resultado =[
             { 
@@ -88,10 +54,52 @@ export  const calculaTicket = (lineasTicket: LineaTicket[]) => {
                tipoIva: tipoIva,
                precioConIva: precioConIva,
            }
-           ]
+           ];
         
-    }
-    return resultado
+    };
+    return resultado;
   };
 
 
+export const totalTicket = (ResultadoLineaTicket:ResultadoLineaTicket[]):ResultadoTotalTicket[] => {
+  let total:ResultadoTotalTicket[] = [];
+  let totalConIva = 0;
+  let totalSinIva = 0;
+  let totalIva = 0 ;
+  
+  for (let i = 0; i < ResultadoLineaTicket.length; i++) {
+       
+      totalSinIva += ResultadoLineaTicket[i].precionSinIva;
+      totalConIva += ResultadoLineaTicket[i].precioConIva;
+      const ivaParaEstaLinea = tipoDeIva(ResultadoLineaTicket[i].tipoIva, totalSinIva);
+      totalIva += ivaParaEstaLinea;
+  };
+
+  return total = [
+    {
+      totalSinIva: totalSinIva,
+      totalConIva: totalConIva,
+      totalIva: totalIva,
+    }
+  ];
+
+}
+
+export const totalPorTipoIva = (lineaTicket:ResultadoLineaTicket[]):TotalPorTipoIva[] => {
+  let totalPorIva:TotalPorTipoIva[]  = []
+  let ultimoIva = ""
+  for (let i = 0; i < lineaTicket.length; i++) {
+    let tipoIva = lineaTicket[i].tipoIva
+      if(tipoIva === ultimoIva){
+
+      }
+      ultimoIva
+  }
+  return totalPorIva = [
+    {
+      tipoIva: tipoIva,
+      cuantia : cuantia,
+    }
+  ]
+
+}
