@@ -1,4 +1,4 @@
-import { calculaTicket, totalTicket, totalPorTipoIva} from "./main"
+import { calculaTicket, totalTicket, desgloseIva, generarTicketFinal} from "./main"
 import { LineaTicket, ResultadoLineaTicket } from "./model"
 
 describe('calculaTicket', () => { 
@@ -14,7 +14,7 @@ describe('calculaTicket', () => {
               },
               cantidad: 2,
             },
-        ]
+        ];
         //Act
         const result = calculaTicket(producto)
         //Assert
@@ -26,12 +26,13 @@ describe('calculaTicket', () => {
             precionSinIva: 2,
             tipoIva: "general",
           },
-        ]
-        expect(result).toEqual(resultadoLineaTicket)
+        ];
 
-    })
+        expect(result).toEqual(resultadoLineaTicket);
 
- })
+    });
+
+});
  
 describe('ResultadoTotalTicket', () => {
   it("Deberia devolver el objeto", () =>{
@@ -44,7 +45,7 @@ describe('ResultadoTotalTicket', () => {
           precionSinIva: 2,
           tipoIva: "general",
       }
-    ]
+    ];
     //Act
     const result = totalTicket(ResultadoLineaTicket)
 
@@ -57,15 +58,15 @@ describe('ResultadoTotalTicket', () => {
       }
     ]
 
-    expect(result).toEqual(resultadoTotalTicket)
-  })
+    expect(result).toEqual(resultadoTotalTicket);
+  });
 
-})
+});
 
 describe("TotalPorTipoIva", () =>{
   it("Debe devolver el desglose total", () => {
     //Arrange
-    const ResultadoLineaTicket:ResultadoLineaTicket[] = [
+    const resultadoLineaTicket:ResultadoLineaTicket[] = [
       {
         cantidad: 2,
         nombre: "Legumbres",
@@ -73,19 +74,64 @@ describe("TotalPorTipoIva", () =>{
         precionSinIva: 2,
         tipoIva: "general",
     }
-  ]
+  ];
     
     //Atc
-    const result = totalPorTipoIva(ResultadoLineaTicket)
+    const result = desgloseIva(resultadoLineaTicket);
     //Assert 
-     const TotalPorTipoIva = [
+     const totalporIva = [
       {
         tipoIva: "general",
-        cuantia : 1,
+        cuantia : 2,
       }
-    ]
-    expect(result).toEqual(TotalPorTipoIva)
+    ];
 
+    expect(result).toEqual(totalporIva);
+
+  })
+})
+
+
+describe("generarTicketFinal", () => {
+
+  it("Debe devolver el ticket final", () =>{
+    //Arrange
+    const lineaTicker: LineaTicket[] =  [
+      {
+        producto: {
+          nombre: "Legumbres",
+          precio: 2,
+          tipoIva: "general",
+        },
+        cantidad: 2,
+      },
+    ];
+    //Act
+
+    const result = generarTicketFinal(lineaTicker);
+
+    //Assert
+    const ticketFinal = [{
+      lineas:{
+        totalConIva: 2.42,
+        totalIva: 0.42,
+        totalSinIva: 2,
+      },
+      total: {
+        cantidad: 2,
+        nombre: "Legumbres",
+        precioConIva: 2.42,
+        precionSinIva: 2,
+        tipoIva: "general",
+      },
+      desgloseIva: {
+        cuantia: 2,
+        tipoIva: "general"
+       
+      }
+    }];
+
+    expect(result).toEqual(ticketFinal);
   })
 
 
