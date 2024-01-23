@@ -2,6 +2,7 @@
 import { LineaTicket, ResultadoLineaTicket, ResultadoTotalTicket, TipoIva, TotalPorTipoIva, productos } from "./model";
 import "./style.css";
 
+//I calculate the VAT by the type
 
 const tipoDeIva = (tipoIva:TipoIva,precio:number):number => {
       
@@ -45,7 +46,7 @@ export  const calculaTicket = (lineasTicket: LineaTicket[]) => {
       const precioIva = tipoDeIva(tipoIva,precio);
       let precioConIva = precioIva + precio;
        
-      return resultado =[
+      resultado.push(
         { 
           nombre: lineasTicket[i].producto.nombre,
           cantidad: lineasTicket[i].cantidad,
@@ -53,11 +54,17 @@ export  const calculaTicket = (lineasTicket: LineaTicket[]) => {
           tipoIva: tipoIva,
           precioConIva: precioConIva,
         }
-      ];
+      )
         
     };
+
   return resultado;
 };
+
+// I pass as a parameter the product list, that is in /model.ts
+const resultadoProducto = calculaTicket(productos)
+console.log(resultadoProducto);
+
 
 
 export const totalTicket = (ResultadoLineaTicket:ResultadoLineaTicket[]):ResultadoTotalTicket[] => {
@@ -68,22 +75,27 @@ export const totalTicket = (ResultadoLineaTicket:ResultadoLineaTicket[]):Resulta
   
   for (let i = 0; i < ResultadoLineaTicket.length; i++) {
 
-    totalSinIva += ResultadoLineaTicket[i].precionSinIva;
-    totalConIva += ResultadoLineaTicket[i].precioConIva;
+    totalSinIva = ResultadoLineaTicket[i].precionSinIva;
+    totalConIva = ResultadoLineaTicket[i].precioConIva;
     const ivaParaEstaLinea = tipoDeIva(ResultadoLineaTicket[i].tipoIva, totalSinIva);
-    totalIva += ivaParaEstaLinea;
+    totalIva = ivaParaEstaLinea;
     
+    total.push(  
+      {
+        totalSinIva: totalSinIva,
+        totalConIva: totalConIva,
+        totalIva: totalIva,
+      }
+      )
   };
 
-  return total = [
-    {
-      totalSinIva: totalSinIva,
-      totalConIva: totalConIva,
-      totalIva: totalIva,
-    }
-  ];
+  return total
+};
 
-}
+console.log(totalTicket(resultadoProducto));
+
+
+
 
 export const desgloseIva = (resultadoLineaTicket: ResultadoLineaTicket[]): TotalPorTipoIva[] => {
   let desglose: TotalPorTipoIva[] = [];
@@ -106,6 +118,9 @@ export const desgloseIva = (resultadoLineaTicket: ResultadoLineaTicket[]): Total
   return desglose;
 };
 
+console.log(desgloseIva(resultadoProducto));
+
+
 
 export const generarTicketFinal = (lineasTicket:LineaTicket[])=> {
 
@@ -122,3 +137,4 @@ export const generarTicketFinal = (lineasTicket:LineaTicket[])=> {
 
 
 console.log(generarTicketFinal(productos));
+
