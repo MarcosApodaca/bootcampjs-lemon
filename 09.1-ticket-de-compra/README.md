@@ -1,11 +1,3 @@
-# typescript-sandbox
-
-Para la parte de cada módulo en la que te planteamos ejercicios con JavaScript puedes usar este sandbox.
-
-Pasos:
-
-- Clonate el proyecto.
-- Instala las dependencias con `npm install`.
-- Ejecuta el sandbox con `npm run dev`.
-- Abre el navegador en `http://localhost:5173/` (si ese puerto no te funciona, mira en la consola donde has hecho el build, puede que este ocupado y se haya abierto en otro puerto).
-- Puedes empezar a meter tu código en el fichero:
+# Módulo 9 - 9.1 Ticket de compra
+En comienzo no tuve mucha complicacion, aplique el metodo TDD, para un entorno de desarrollo mas controlado, a parte considero que deberia usar mas los array method,
+unicamente utilize findIndex, mas que nada me resulta mas comodo usar bulce for, para los siguentes trabajos los utilizare, los array method. 
