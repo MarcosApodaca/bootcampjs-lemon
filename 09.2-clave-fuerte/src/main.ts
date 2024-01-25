@@ -38,5 +38,4 @@ export const tieneNumeros = (clave: string): ValidacionClave => {
     
 };
 
-const contra = 'andres233'
-console.log(tieneNumeros(contra));
+
