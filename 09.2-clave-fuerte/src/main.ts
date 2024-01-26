@@ -1,6 +1,5 @@
 
-import { ValidacionClave, commonPasswords } from "./model";
-
+import { ValidacionClave } from "./model";
 
 
 export const tieneMayusculasYMinusculas = (clave: string): ValidacionClave => {
@@ -99,30 +98,24 @@ export const tienePalabrasComunes = (clave: string, commonPasswords: string[]): 
 
 export const validarClave = (nombreUsuario: string, clave: string, commonPasswords: string[]): ValidacionClave => {
 
-    const MayusculasYMinusculas = tieneMayusculasYMinusculas(clave)
-    const Numeros = tieneNumeros(clave)
-    const CaracteresEspeciales = tieneCaracteresEspeciales(clave)
-    const LongitudMinima = tieneLongitudMinima(clave)
-    const NombreUsuario = tieneNombreUsuario(nombreUsuario,clave)
-    const PalabrasComunes = tienePalabrasComunes(clave,commonPasswords)
+    const MayusculasYMinusculas = tieneMayusculasYMinusculas(clave);
+    const Numeros = tieneNumeros(clave);
+    const CaracteresEspeciales = tieneCaracteresEspeciales(clave);
+    const LongitudMinima = tieneLongitudMinima(clave);
+    const NombreUsuario = tieneNombreUsuario(nombreUsuario,clave);
+    const PalabrasComunes = tienePalabrasComunes(clave,commonPasswords);
 
-    
-    switch (key) {
-        case MayusculasYMinusculas:
-            
-            break;
-    
-        default:
-            break;
+    const resultados = [MayusculasYMinusculas, Numeros, CaracteresEspeciales, LongitudMinima, NombreUsuario, PalabrasComunes];
+    const primerError = resultados.find(result => !result.esValida);
+
+    if (primerError) {
+
+        return primerError;
+
+    }else{
+        return {
+            esValida: true
+        };
     }
-    
 };
 
-<<<<<<< HEAD
-let usuario = "Marcos"
-
-
-console.log(validarClave(usuario,"5!kD4M59wf",commonPasswords));
-=======
-
->>>>>>> 07ee7ef202f76e2fa8c662d50a189ef6c87cac40

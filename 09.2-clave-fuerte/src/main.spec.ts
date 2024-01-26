@@ -1,4 +1,4 @@
-import { tieneCaracteresEspeciales, tieneLongitudMinima, tieneMayusculasYMinusculas, tieneNombreUsuario, tieneNumeros, tienePalabrasComunes } from "./main";
+import { tieneCaracteresEspeciales, tieneLongitudMinima, tieneMayusculasYMinusculas, tieneNombreUsuario, tieneNumeros, tienePalabrasComunes, validarClave } from "./main";
 import { ValidacionClave } from "./model";
 
 describe("tieneMayusculasYMinusculas", () =>{
@@ -15,8 +15,8 @@ describe("tieneMayusculasYMinusculas", () =>{
     });
 });
 
-describe("tieneNumeros false", () => {
-    it("should be return true or false if the password has a number", () => {
+describe("tieneNumeros", () => {
+    it("should be return TRUE if the password has a number", () => {
         //Arrange
         const password:string = 'jorGe28';
         //Act
@@ -30,7 +30,7 @@ describe("tieneNumeros false", () => {
 });
 
 describe("tieneCaracteresEspeciales", () => {
-    it("should be return true or false if the password has a charater", () => {
+    it("should be return TRUE if the password has a special character", () => {
         //Arrange
         const password:string = 'Maqui@velo13';
         //Act
@@ -44,7 +44,7 @@ describe("tieneCaracteresEspeciales", () => {
 });
 
 describe("tieneLongitudMinima", () => {
-    it("should be return true or false if the password have the minimum charater", () => {
+    it("should be return TRUE if the password have have a minimum length of 8 characters", () => {
         //Arrange
         const password:string = 'D2@z37fy';
         //Act
@@ -58,7 +58,7 @@ describe("tieneLongitudMinima", () => {
 });
 
 describe("tieneNombreUsuario", () => {
-    it("should be return true or false if the password have the minimum charater", () => {
+    it("should be return FALSE if the if the password is the same as the user's password", () => {
         //Arrange
         const usuario:string = "admin";
         const password:string = 'admin';
@@ -74,7 +74,7 @@ describe("tieneNombreUsuario", () => {
 });
 
 describe("tienePalabrasComunes", () => {
-    it("should be return true or false if the password have the minimum charater", () => {
+    it("should be return FALSE if the password contains common password", () => {
         //Arrange
         const commonPasswords:string[] = 
         [
@@ -95,7 +95,7 @@ describe("tienePalabrasComunes", () => {
         expect(result).toEqual(respuesta);
     });
 
-    it("should be return true or true if the password have the minimum charater", () => {
+    it("should be return TRUE if the password does not contain common password", () => {
         //Arrange
         const commonPasswords:string[] = 
         [
@@ -116,3 +116,52 @@ describe("tienePalabrasComunes", () => {
     });
 
 });
+
+describe("validarClave", () => {
+    it("should be return TRUE if the password passes password validation", () => {
+        //Arrange
+        const nombreUsuario = "Marcos" 
+        const password:string = '5!kD4M59wf';
+        const commonPasswords:string[] = 
+        [
+        "password",
+        "123456",
+        "qwerty",
+        "admin",
+        "letmein",
+        ];
+
+        //Act
+        const result = validarClave(nombreUsuario,password,commonPasswords);
+
+        //Assert
+        const respuesta:ValidacionClave = {
+            esValida: true,
+        };
+        expect(result).toEqual(respuesta);
+    });
+
+    it("should be return FALSE if password does not pass key validation", () => {
+        //Arrange
+        const nombreUsuario = "Marcos" 
+        const password:string = 'p@3ssword';
+        const commonPasswords:string[] = 
+        [
+        "password",
+        "123456",
+        "qwerty",
+        "admin",
+        "letmein",
+        ];
+
+        //Act
+        const result = validarClave(nombreUsuario,password,commonPasswords);
+
+        //Assert
+        const respuesta:ValidacionClave = {
+            esValida: false,
+            error: "La clave debe tener mayúsculas y minúsculas",
+        };
+        expect(result).toEqual(respuesta);
+    });
+})
