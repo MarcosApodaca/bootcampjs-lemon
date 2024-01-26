@@ -118,7 +118,11 @@ export const validarClave = (nombreUsuario: string, clave: string, commonPasswor
     
 };
 
+<<<<<<< HEAD
 let usuario = "Marcos"
 
 
 console.log(validarClave(usuario,"5!kD4M59wf",commonPasswords));
+=======
+
+>>>>>>> 07ee7ef202f76e2fa8c662d50a189ef6c87cac40
