@@ -21,12 +21,6 @@ const tipoDeIva = (tipoIva:TipoIva,precio:number):number => {
     case "superreducidoB":
       tasaIva = 4;
       break;
-    case "superreducidoC":
-      tasaIva = 0;
-      break;
-    case "sinIva":
-      tasaIva = 0;
-      break;
     default:
       tasaIva = 0;
       break;
@@ -42,17 +36,17 @@ export  const calculaTicket = (lineasTicket: LineaTicket[]) => {
     for (let i = 0; i < lineasTicket.length; i++) {
         
       const tipoIva = lineasTicket[i].producto.tipoIva;
-      const precio = lineasTicket[i].producto.precio;
-      const precioIva = tipoDeIva(tipoIva,precio);
-      let precioConIva = precioIva + precio;
+      const precionSinIva = lineasTicket[i].producto.precio;
+      const precioIva = tipoDeIva(tipoIva,precionSinIva);
+      const precioConIva = precioIva + precionSinIva;
        
       resultado.push(
         { 
           nombre: lineasTicket[i].producto.nombre,
           cantidad: lineasTicket[i].cantidad,
-          precionSinIva: precio,
-          tipoIva: tipoIva,
-          precioConIva: precioConIva,
+          precionSinIva,
+          tipoIva,
+          precioConIva,
         }
       )
         
@@ -67,29 +61,24 @@ console.log(resultadoProducto);
 
 
 
-export const totalTicket = (ResultadoLineaTicket:ResultadoLineaTicket[]):ResultadoTotalTicket[] => {
-  let total:ResultadoTotalTicket[] = [];
-  let totalConIva = 0;
+export const totalTicket = (resultadoLineaTicket: ResultadoLineaTicket[]):ResultadoTotalTicket => {
   let totalSinIva = 0;
+  let totalConIva = 0;
   let totalIva = 0;
   
-  for (let i = 0; i < ResultadoLineaTicket.length; i++) {
-
-    totalSinIva = ResultadoLineaTicket[i].precionSinIva;
-    totalConIva = ResultadoLineaTicket[i].precioConIva;
-    const ivaParaEstaLinea = tipoDeIva(ResultadoLineaTicket[i].tipoIva, totalSinIva);
-    totalIva = ivaParaEstaLinea;
-    
-    total.push(  
-      {
-        totalSinIva: totalSinIva,
-        totalConIva: totalConIva,
-        totalIva: totalIva,
-      }
-      )
+  for (let i = 0; i < resultadoLineaTicket.length; i++) {
+    const totalSinIvaProd = resultadoLineaTicket[i].precionSinIva * resultadoLineaTicket[i].cantidad;
+    totalSinIva += totalSinIvaProd;
+    const totalConIvaProd = resultadoLineaTicket[i].precioConIva * resultadoLineaTicket[i].cantidad;
+    totalConIva += totalConIvaProd;
+    totalIva += totalConIvaProd - totalSinIvaProd;
   };
 
-  return total
+  return {
+    totalSinIva,
+    totalConIva,
+    totalIva: Number(totalIva.toFixed(2)),
+  };
 };
 
 console.log(totalTicket(resultadoProducto));
@@ -102,7 +91,8 @@ export const desgloseIva = (resultadoLineaTicket: ResultadoLineaTicket[]): Total
 
   for (let i = 0; i < resultadoLineaTicket.length; i++) {
       let tipoIva = resultadoLineaTicket[i].tipoIva;
-      let cuantia = resultadoLineaTicket[i].cantidad
+      let cuantia = (resultadoLineaTicket[i].precioConIva - resultadoLineaTicket[i].precionSinIva) * resultadoLineaTicket[i].cantidad
+      cuantia = Number(cuantia.toFixed(2));
 
       const indiceExistente = desglose.findIndex((item) => item.tipoIva === tipoIva);
 
@@ -110,8 +100,8 @@ export const desgloseIva = (resultadoLineaTicket: ResultadoLineaTicket[]): Total
         desglose[indiceExistente].cuantia += cuantia;
       } else {
         desglose.push({
-          tipoIva: tipoIva,
-          cuantia: cuantia,
+          tipoIva,
+          cuantia,
         });
       }
   }
@@ -124,13 +114,13 @@ console.log(desgloseIva(resultadoProducto));
 
 export const generarTicketFinal = (lineasTicket:LineaTicket[])=> {
 
-  const resultadoLineaTicket = calculaTicket(lineasTicket);
-  const total = totalTicket(resultadoLineaTicket);
-  const desgloseIvaResult = desgloseIva(resultadoLineaTicket);
+  const lineas = calculaTicket(lineasTicket);
+  const total = totalTicket(lineas);
+  const desgloseIvaResult = desgloseIva(lineas);
   
   return {
-    lineas: resultadoLineaTicket,
-    total: total,
+    lineas,
+    total,
     desgloseIva: desgloseIvaResult,
   };
 }
