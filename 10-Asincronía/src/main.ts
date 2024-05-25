@@ -1,3 +1,11 @@
-import "./style.css";
+import { getDateApi } from "./fetchData";
+import { Personajes } from "./model";
 
-console.log("Hello Typescript!");
+
+
+const renderData = (data:Personajes[]) => {
+
+    data.forEach(element => {
+        const 
+    });
+}
