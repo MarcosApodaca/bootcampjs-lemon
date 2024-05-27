@@ -3,7 +3,7 @@
 
 const DIRECTION_URL = 'http://localhost:3000/personajes'
 
-const getDateApi = async () => {
+export const getDateApi = async () => {
     
     try{
         const response = await fetch(DIRECTION_URL)

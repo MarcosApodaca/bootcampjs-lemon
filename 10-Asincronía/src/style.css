@@ -97,3 +97,13 @@ button:focus-visible {
   padding: .5rem;
   width: 15rem;
 }
+
+.listado{
+  display: flex;
+  gap: 1rem;
+}
+
+.personaje-contenedor{
+  background-color: #535bf2;
+  gap: 1rem;
+}
