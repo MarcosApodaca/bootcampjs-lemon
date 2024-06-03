@@ -1,3 +1,8 @@
 import "./style.css";
 
-console.log("Hello Typescript!");
+const regexp = /^\....$/gm
+
+const test = regexp.test('.txt')
+
+
+console.log(test);
