@@ -67,6 +67,20 @@ const contenedorInfoBanco = (codigo:any, banco:any, control:any, cuenta:any) => 
     } 
 }
 
+const inputIban = () => {
+    const input = document.getElementById('iban-input') as HTMLInputElement
+    if (input) {
+        const value = input.value;  
+        validarFormatoIban(value)
+
+    } else {
+        console.error('Input element not found');
+    }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-    validarFormatoIban('ES21 0188 0101 72 2030876295');
+    const validateButton = document.getElementById('validate-button');
+    if (validateButton) {
+        validateButton.addEventListener('click', inputIban);
+    }
 });
