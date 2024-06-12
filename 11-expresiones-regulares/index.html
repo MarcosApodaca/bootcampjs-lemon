@@ -8,13 +8,13 @@
   </head>
   <body>
     <div class="contenedor">
-      <h2>Introduzca el iban</h2>
+      <h2 class="title">Introduzca el IBAN</h2>
 
       <div class="input-container">
-      <input id="iban-input" class="input" type="text">
-      <button id="validate-button">Validate IBAN</button>
+      <input id="iban-input" class="input" type="text" placeholder="WW 0000 0000 00 0000000000">
+      <button id="validate-button" class="btn">Validar IBAN</button>
       </div>
-      <div id="contenedorListaBanco"></div>
+      <div class="contenedor-listado" id="contenedorListaBanco"></div>
 
     </div>
     <script type="module" src="/src/main.ts"></script>
