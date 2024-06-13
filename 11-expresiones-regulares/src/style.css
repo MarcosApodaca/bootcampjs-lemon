@@ -43,8 +43,8 @@ body {
 
 .btn{
   padding: 0.4rem;
-  border-color: #fff;
-  background-color: #fff;
+  border-color: transparent;
+  background-color: #d2d2d2;
   color: #2b2e3f;
   transition: all .15s ease-out;
   margin-left: 1rem;
@@ -54,7 +54,7 @@ body {
 
 .btn:hover{
   cursor: pointer;
-  background-color: #dfdfdf;
+  background-color: #fff;
 }
 
 .contenedor-listado{
