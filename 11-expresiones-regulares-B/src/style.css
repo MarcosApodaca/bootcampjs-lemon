@@ -1,0 +1,43 @@
+
+body {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.textarea{
+  width: 900px;
+  height: 300px;
+  margin: 0 auto;
+}
+
+.btn{
+  width: 300px;
+  margin: 2rem auto;
+  padding: .5rem;
+}
+
+.personaje-contenedor {
+  background-color: #fff;
+  border-radius: 1rem;
+  margin: 1rem;
+  width: 20rem;
+  padding: 1rem;
+}
+
+.personajes_img{
+  width: 180px;
+  height: 280px;
+}
