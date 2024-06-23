@@ -5,28 +5,33 @@ import "./style.css";
 const recuperarTag = (value:any) => {
     const regexp = /<img\s[^>]*(?<url>src="([^"]*)")[^>]*>/g
 
-    const coincidencia = regexp.exec(value);
+    let coincidencia;
+    const url = [];
 
-    if(coincidencia) {
-        const {url} = coincidencia.groups as any
-        render(url)
-        return true
-    }else{
-        console.log('error');
-        return false
+    while ((coincidencia = regexp.exec(value)) !== null) {
+        url.push(coincidencia[2]); // coincide con el grupo de captura para la URL
+    }
+
+    if (url.length > 0) {
+        render(url);
+        return true;
+    } else {
+        console.log('No se encontraron URLs');
+        return false;
     }
 }
 
-const crearDivElemento = () =>{
-    
-    const imgContainer = document.createElement('img');
 
-}
 
 const render = (url:any) => {
+    
     const contenedorImg = document.getElementById('contenedorImg') as HTMLInputElement
-    contenedorImg.innerHTML = ''
-    contenedorImg.appendChild(url)
+
+    url.forEach((url: string) => {
+        const div = document.createElement('div');
+        div.textContent = url;
+        contenedorImg.appendChild(div);
+    });
 }
 
 const extraerTextArea = () => {
@@ -48,3 +53,4 @@ document.addEventListener("DOMContentLoaded", () => {
         button.addEventListener('click', extraerTextArea);
     }
 });
+

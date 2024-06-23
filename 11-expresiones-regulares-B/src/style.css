@@ -29,15 +29,11 @@ h1 {
   padding: .5rem;
 }
 
-.personaje-contenedor {
-  background-color: #fff;
-  border-radius: 1rem;
-  margin: 1rem;
-  width: 20rem;
-  padding: 1rem;
-}
 
-.personajes_img{
-  width: 180px;
-  height: 280px;
+#contenedorImg{
+  margin: 0 auto;
+  max-width: 900px;
+}
+#contenedorImg div {
+  margin-bottom: 10px; 
 }
