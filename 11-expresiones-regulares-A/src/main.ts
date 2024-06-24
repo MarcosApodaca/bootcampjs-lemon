@@ -30,7 +30,7 @@ export const validarFormatoIban = (value: string): boolean => {
 
 
 
-const formaIban = (formatoIban:boolean) => {
+const formaIban = (formatoIban:boolean): HTMLElement => {
     const validar = document.createElement('p')
     if(formatoIban === true) {
         validar.textContent = `EL IBAN esta bien formado`
@@ -39,28 +39,28 @@ const formaIban = (formatoIban:boolean) => {
 }
 
 
-const crearNombreBanco = (banco:any) => {
+const crearNombreBanco = (banco:string): HTMLElement => {
     const nombreBanco = document.createElement('p')
     nombreBanco.textContent = `Banco: ${banco}`
     
     return nombreBanco
 }
 
-const crearInforBanco = (codigo: any) => {
+const crearInforBanco = (codigo: string): HTMLElement => {
     const codigoSucursal = document.createElement('p')
     codigoSucursal.textContent = `Codigo Sucursal: ${codigo}`
     
     return codigoSucursal
 }
 
-const crearControlBanco = (control:any) => {
+const crearControlBanco = (control:string): HTMLElement => {
     const codigoDeControl = document.createElement('p')
     codigoDeControl.textContent = `Digito de control: ${control} `
 
     return codigoDeControl
 }
 
-const crearNumeroCuenta = (cuenta:string) => {
+const crearNumeroCuenta = (cuenta:string): HTMLElement => {
     const numeroDeCuenta = document.createElement('P')
     numeroDeCuenta.textContent = `Numero de cuenta: ${cuenta}`
 
@@ -69,7 +69,7 @@ const crearNumeroCuenta = (cuenta:string) => {
 
 
 
-const contenedorInfoBanco = (codigo:any, banco:any, control:any, cuenta:any, formatoIban:boolean) => {
+const contenedorInfoBanco = (codigo:string, banco:string, control:string, cuenta:string, formatoIban:boolean):void => {
 
     const listadoBanco = document.getElementById('contenedorListaBanco')
     if (listadoBanco) {
