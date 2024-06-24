@@ -5,7 +5,7 @@ import { validarIban } from "./validarIban";
 
 export const validarFormatoIban = (value: string): boolean => {
     const regexp = /^(?<codigoPais>[A-Z]{2})\d{2}(\s|-)?(?<codigoBanco>\d{4})(\s|-)?(?<codigoSucursal>\d{4})(\s|-)?(?<digitoControl>\d{2})(\s|-)?(?<numeroCuenta>\d{10})$/gm
-    let formatoIban = false
+    let formatoIban =  false
     
     const coincidencia = regexp.exec(value);
     
