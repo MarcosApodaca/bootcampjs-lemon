@@ -5,38 +5,40 @@ import { validarIban } from "./validarIban";
 
 export const validarFormatoIban = (value: string): boolean => {
     const regexp = /^(?<codigoPais>[A-Z]{2})\d{2}(\s|-)?(?<codigoBanco>\d{4})(\s|-)?(?<codigoSucursal>\d{4})(\s|-)?(?<digitoControl>\d{2})(\s|-)?(?<numeroCuenta>\d{10})$/gm
-    let formatoIban =  false
     
     const coincidencia = regexp.exec(value);
     
+    const listadoBanco = document.getElementById('contenedorListaBanco') as HTMLDivElement
+    const validar = document.createElement('p');
+    listadoBanco.innerHTML = '';
     if(coincidencia){
-        const { codigoBanco, codigoSucursal, digitoControl , numeroCuenta} = coincidencia.groups as any
-        formatoIban = true
         
-        bancos.map((bancos) =>{
-            let nombreDeBanco = '' 
-            
-            if( codigoBanco === bancos.codigo){
-                nombreDeBanco = bancos.nombre
-                contenedorInfoBanco(codigoSucursal, nombreDeBanco, digitoControl, numeroCuenta, formatoIban )
-            }
-        })
+        validar.textContent = `EL IBAN esta bien formado`;
+        listadoBanco?.appendChild(validar)
+        if (validarIban(value)){
+            const { codigoBanco, codigoSucursal, digitoControl , numeroCuenta} = coincidencia.groups as any
+        
+            bancos.map((bancos) =>{
+                let nombreDeBanco = '' 
+                
+                if( codigoBanco === bancos.codigo){
+                    nombreDeBanco = bancos.nombre
+                    contenedorInfoBanco(codigoSucursal, nombreDeBanco, digitoControl, numeroCuenta )
+                }
+            })
+        }
+          
         return true
     }else{
-        console.log('error');
+        validar.textContent = `EL IBAN no esta bien formado`;
+        listadoBanco?.appendChild(validar)
         return false
     }
 };
 
 
 
-const formaIban = (formatoIban:boolean): HTMLElement => {
-    const validar = document.createElement('p')
-    if(formatoIban === true) {
-        validar.textContent = `EL IBAN esta bien formado`
-    }
-    return validar
-}
+
 
 
 const crearNombreBanco = (banco:string): HTMLElement => {
@@ -69,25 +71,23 @@ const crearNumeroCuenta = (cuenta:string): HTMLElement => {
 
 
 
-const contenedorInfoBanco = (codigo:string, banco:string, control:string, cuenta:string, formatoIban:boolean):void => {
+const contenedorInfoBanco = (codigo:string, banco:string, control:string, cuenta:string):void => {
 
     const listadoBanco = document.getElementById('contenedorListaBanco')
     if (listadoBanco) {
-        listadoBanco.innerHTML = '';
         listadoBanco.appendChild(crearInforBanco(codigo));
         listadoBanco.appendChild(crearNombreBanco(banco));
         listadoBanco.appendChild(crearControlBanco(control));
         listadoBanco.appendChild(crearNumeroCuenta(cuenta));
-        listadoBanco.appendChild(formaIban(formatoIban))
     } 
 }
 
 const inputIban = () => {
     const input = document.getElementById('iban-input') as HTMLInputElement
     if (input) {
-        const value = input.value;  
-        validarFormatoIban(value)
-        validarIban(value)
+        const value = input.value;
+        validarFormatoIban(value);
+       
 
     } else {
         console.error('Input element not found');
