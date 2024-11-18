@@ -23,3 +23,26 @@
 //   ];
 
 
+class TotalDepartamento {
+
+    descuento: number; // Porcentaje de descuento
+    total: number; // Total final calculado
+    subtotal: number; // Subtotal sin aplicar descuento
+
+    constructor(decuento:number) {
+        this.descuento = decuento;
+        this.total = 0;
+        this.subtotal = 0;
+    }
+    calculatotal() {
+      this.total =  this.subtotal - (this.descuento * this.subtotal) / 100
+    }
+}
+
+const totalesSupermercado = new TotalDepartamento(10)
+totalesSupermercado.subtotal = 50;
+totalesSupermercado.calculatotal()
+
+console.log(totalesSupermercado.total);
+
+
