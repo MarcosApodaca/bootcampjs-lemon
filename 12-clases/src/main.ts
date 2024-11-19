@@ -23,26 +23,35 @@
 //   ];
 
 
-class TotalDepartamento {
+class Animal {
+  nombre: string;
+  edad: number;
+  constructor(nombre: string, edad: number) {
+  this.nombre = nombre;
+  this.edad = edad;
+  }
+  haceRuido() {
+  return "Algún sonido genérico";
+  }
+  duerme() {
+  return "Zzzzz";
+  }
+ }
 
-    descuento: number; // Porcentaje de descuento
-    total: number; // Total final calculado
-    subtotal: number; // Subtotal sin aplicar descuento
+class Gato extends Animal {
+  raza: string;
+  constructor (nombre: string, edad: number, raza:string) {
+    super(nombre,edad)
+    this.raza = raza;
+  }
+  haceRuido(): string {
+    return 'Miauuu'
+  }
 
-    constructor(decuento:number) {
-        this.descuento = decuento;
-        this.total = 0;
-        this.subtotal = 0;
-    }
-    calculatotal() {
-      this.total =  this.subtotal - (this.descuento * this.subtotal) / 100
-    }
 }
 
-const totalesSupermercado = new TotalDepartamento(10)
-totalesSupermercado.subtotal = 50;
-totalesSupermercado.calculatotal()
+const gato = new Gato('michi', 5,'Siames' )
 
-console.log(totalesSupermercado.total);
+console.log(gato);
 
 
