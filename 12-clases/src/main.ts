@@ -1,57 +1,43 @@
-// interface Reserva {
-//     tipoHabitacion: "standard" | "suite";
-//     pax: number;
-//     noches: number;
-//   }
-  
-//   const reservas = [
-//     {
-//       tipoHabitacion: "standard",
-//       pax: 1,
-//       noches: 3,
-//     },
-//     {
-//       tipoHabitacion: "standard",
-//       pax: 1,
-//       noches: 4,
-//     },
-//     {
-//       tipoHabitacion: "suite",
-//       pax: 2,
-//       noches: 1,
-//     },
-//   ];
+import { Reserva } from "./interface";
 
+// const reservas:Reserva = [
+//   {
+//     tipoHabitacion: "standard",
+//     pax: 1,
+//     noches: 3,
+//   },
+//   {
+//     tipoHabitacion: "standard",
+//     pax: 1,
+//     noches: 4,
+//   },
+//   {
+//     tipoHabitacion: "suite",
+//     pax: 2,
+//     noches: 1,
+//   },
+// ];
 
-class Animal {
-  nombre: string;
-  edad: number;
-  constructor(nombre: string, edad: number) {
-  this.nombre = nombre;
-  this.edad = edad;
-  }
-  haceRuido() {
-  return "Algún sonido genérico";
-  }
-  duerme() {
-  return "Zzzzz";
-  }
- }
+class ReservasHotel {
 
-class Gato extends Animal {
-  raza: string;
-  constructor (nombre: string, edad: number, raza:string) {
-    super(nombre,edad)
-    this.raza = raza;
-  }
-  haceRuido(): string {
-    return 'Miauuu'
+  tipoHabitacion:string
+  pax:number
+  noches:number
+
+  constructor(reservas:Reserva){
+    this.tipoHabitacion = reservas.tipoHabitacion
+    this.pax = reservas.pax;
+    this.noches = reservas.noches;
   }
 
+  calcularPrecioBase() {
+    const precioBase = this.tipoHabitacion === "standard" ? 100 : 150;
+    const cargoExtra = (this.pax - 1) * 40; 
+    return (precioBase + cargoExtra) * this.noches;
+  }
 }
 
-const gato = new Gato('michi', 5,'Siames' )
+const Caso1:Reserva = { tipoHabitacion: 'standard', pax:2, noches:3};
+const hotelReserva = new ReservasHotel(Caso1)
 
-console.log(gato);
-
-
+console.log(hotelReserva.calcularPrecioBase());
