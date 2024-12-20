@@ -1,21 +1,17 @@
-import React from "react";
+import { useState } from "react";
+import { Saludo } from "./saludo";
+import { EdicionNombre } from "./edicion-nombre";
 
 export const App = () => {
-  const [nombre, setNombre] = React.useState<string>('Marcos');
-  const [apellido, setApellido] = React.useState('Apodaca')
-
+  const [nombre, setNombre] = useState('Marcos')
   return (
     <>
-      <h1>Nombre: {nombre}</h1>
-      <h1>Apellid: {apellido}</h1>
-      <input 
-      value={nombre}
-      onChange={(e) =>  setNombre(e.target.value)}
+      <Saludo nombre={nombre}/>
+      <EdicionNombre 
+      nombre={nombre}
+      onActualizarNombre={setNombre}
       />
-      <input 
-      value={apellido}
-      onChange={(e) => setApellido(e.target.value)}
-      />
+     
     </>
   );
 };
